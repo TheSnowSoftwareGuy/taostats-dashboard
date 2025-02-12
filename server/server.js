@@ -13,7 +13,7 @@ const app = express();
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
-    "default-src 'self'; font-src 'self' https://taostats-dashboard.onrender.com"
+    "default-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; font-src 'self' https://taostats-dashboard.onrender.com"
   );
   next();
 });
