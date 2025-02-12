@@ -12,9 +12,20 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import PriceTrendChart from './PriceTrendChart';
 
-const formatNumber = (value) => {
+const formatNumber = (value, decimals = 2) => {
   if (!value || isNaN(value)) return '0';
-  return parseFloat(value).toLocaleString();
+  return parseFloat(value/1e9).toLocaleString(undefined, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  });
+};
+
+const formatPrice = (price) => {
+  if (!price || isNaN(price)) return '0';
+  return parseFloat(price).toLocaleString(undefined, {
+    minimumFractionDigits: 4,
+    maximumFractionDigits: 4
+  });
 };
 
 const DetailItem = ({ label, value }) => (
@@ -70,7 +81,7 @@ const SubnetDetailsDialog = ({ subnet, open, onClose }) => {
           />
           <DetailItem 
             label="Price" 
-            value={formatNumber(subnet.price, 4)}
+            value={formatPrice(subnet.price)}
           />
           <DetailItem 
             label="24h Volume" 

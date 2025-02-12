@@ -33,14 +33,18 @@ const SubnetTable = ({ subnets, onRefresh, loading }) => {
 
   const formatNumber = (value, decimals = 2) => {
     if (!value || isNaN(value)) return '0';
-    return parseFloat(value).toLocaleString(undefined, {
+    return parseFloat(value/1e9).toLocaleString(undefined, {
       minimumFractionDigits: decimals,
       maximumFractionDigits: decimals
     });
   };
 
   const formatPrice = (price) => {
-    return formatNumber(price, 4);
+    if (!price || isNaN(price)) return '0';
+    return parseFloat(price).toLocaleString(undefined, {
+      minimumFractionDigits: 4,
+      maximumFractionDigits: 4
+    });
   };
 
   const handleSort = (property) => {
