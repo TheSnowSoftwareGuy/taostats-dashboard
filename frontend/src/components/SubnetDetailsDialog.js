@@ -20,6 +20,16 @@ const formatNumber = (value, decimals = 2) => {
   });
 };
 
+
+const formatPercent = (value, decimals = 2) => {
+  if (!value || isNaN(value)) return '0';
+  return parseFloat(value).toLocaleString(undefined, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  });
+};
+
+
 const formatPrice = (price) => {
   if (!price || isNaN(price)) return '0';
   return parseFloat(price).toLocaleString(undefined, {
@@ -89,7 +99,7 @@ const SubnetDetailsDialog = ({ subnet, open, onClose }) => {
           />
           <DetailItem 
             label="24h Price Change" 
-            value={`${formatNumber(subnet.price_change_1_day)}%`}
+            value={`${formatPercent(subnet.price_change_1_day)}%`}
           />
         </Grid>
 

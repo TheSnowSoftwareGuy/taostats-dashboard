@@ -39,6 +39,14 @@ const SubnetTable = ({ subnets, onRefresh, loading }) => {
     });
   };
 
+  const formatPercent = (value, decimals = 2) => {
+    if (!value || isNaN(value)) return '0';
+    return parseFloat(value).toLocaleString(undefined, {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals
+    });
+  };
+
   const formatPrice = (price) => {
     if (!price || isNaN(price)) return '0';
     return parseFloat(price).toLocaleString(undefined, {
@@ -138,7 +146,7 @@ const SubnetTable = ({ subnets, onRefresh, loading }) => {
                 <TableCell align="right">{formatNumber(subnet.market_cap)}</TableCell>
                 <TableCell align="right">{formatNumber(subnet.liquidity)}</TableCell>
                 <TableCell align="right">{formatPrice(subnet.price)}</TableCell>
-                <TableCell align="right">{formatNumber(subnet.tao_volume_24_hr)}</TableCell>
+                <TableCell align="right">{formatPercent(subnet.tao_volume_24_hr)}</TableCell>
                 <TableCell 
                   align="right"
                   sx={{ 
@@ -146,7 +154,7 @@ const SubnetTable = ({ subnets, onRefresh, loading }) => {
                            subnet.price_change_1_day < 0 ? 'error.main' : 'text.primary'
                   }}
                 >
-                  {formatNumber(subnet.price_change_1_day)}%
+                  {formatPercent(subnet.price_change_1_day)}%
                 </TableCell>
               </TableRow>
             ))}
