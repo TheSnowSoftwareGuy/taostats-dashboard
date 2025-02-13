@@ -84,6 +84,7 @@ const SubnetTable = ({ subnets, onRefresh, loading }) => {
     { id: 'name', label: 'Name', numeric: false },
     { id: 'symbol', label: 'Symbol', numeric: false },
     { id: 'market_cap', label: 'Market Cap', numeric: true, align: 'right' },
+    { id: 'alpha_staked', label: 'Alpha Staked', numeric: true, align: 'right' },
     { id: 'liquidity', label: 'Liquidity', numeric: true, align: 'right' },
     { id: 'price', label: 'Price', numeric: true, align: 'right' },
     { id: 'tao_volume_24_hr', label: '24h Volume', numeric: true, align: 'right' },
@@ -144,9 +145,10 @@ const SubnetTable = ({ subnets, onRefresh, loading }) => {
                 <TableCell>{subnet.name}</TableCell>
                 <TableCell>{subnet.symbol}</TableCell>
                 <TableCell align="right">{formatNumber(subnet.market_cap)}</TableCell>
+                <TableCell align="right">{formatNumber(subnet.alpha_staked)}</TableCell>
                 <TableCell align="right">{formatNumber(subnet.liquidity)}</TableCell>
                 <TableCell align="right">{formatPrice(subnet.price)}</TableCell>
-                <TableCell align="right">{formatPercent(subnet.tao_volume_24_hr)}</TableCell>
+                <TableCell align="right">{formatNumber(subnet.tao_volume_24_hr)}</TableCell>
                 <TableCell 
                   align="right"
                   sx={{ 
